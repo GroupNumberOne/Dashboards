@@ -74,22 +74,53 @@ class Server():
                                   var location;
                                   for (x = 0; x < cityArray.length; x++) {
                                         geocoder.geocode( {'address': cityArray[x],'region':'NL'}, function(x){return function(results, status) {
-                                        if (status == google.maps.GeocoderStatus.OK) {
-                                          var marker = new google.maps.Marker({
-                                              map: map,
-                                              position: results[0].geometry.location,
-                                              title: cityArray[x],
-                                              animation: google.maps.Animation.DROP
-                                          });
-                                        } else {
-                                          alert('Geocode was not successful for the following reason: ' + status);
+                                            if (status == google.maps.GeocoderStatus.OK) {
+                                              var marker = new google.maps.Marker({
+                                                  map: map,
+                                                  position: results[0].geometry.location,
+                                                  title: cityArray[x],
+                                                  animation: google.maps.Animation.DROP
+                                              });
+                                            } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {    
+                                                setTimeout(function() {
+                                                }, 2000);
+                                            } else {
+                                              alert('Geocode was not successful for the following reason: ' + status);
+                                            }
                                         }
-                                        }
-                                      }(x));
+                                        }(x));
                                   }
                             }
                     
                             google.maps.event.addDomListener(window, 'load', initialize);
+                            
+                            mark();
+                            
+                            function mark(){
+                                for (x = 0; x < cityArray.length; x++) {
+                                    geocodeAndMark(x);
+                                }
+                            }
+                            
+                            function geocodeAndMark(x){
+                                geocoder.geocode( {'address': cityArray[x],'region':'NL'}, function(results, status) {
+                                    if (status == google.maps.GeocoderStatus.OK) {
+                                      var marker = new google.maps.Marker({
+                                          map: map,
+                                          position: results[0].geometry.location,
+                                          title: cityArray[x],
+                                          animation: google.maps.Animation.DROP
+                                      });
+                                    } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {    
+                                        setTimeout(function() {
+                                            geocodeAndMark(x);
+                                        }, 2000);
+                                    } else {
+                                      alert('Geocode was not successful for the following reason: ' + status);
+                                    }
+                                }
+                                );
+                            }
                     
                         </script>
                       </head>
@@ -97,6 +128,7 @@ class Server():
                           <div id="map-canvas"></div>
                       </body>
                     </html>""" % (cityArrayString)
+
     
 path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 print(path)
