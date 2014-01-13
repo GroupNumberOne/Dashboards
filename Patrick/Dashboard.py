@@ -49,22 +49,32 @@ class Server():
                         <meta charset="utf-8">
                         <title>Dashboard van Patrick</title>
                         <style>
-                          html, body, #map-canvas {
-                            height: 900px;
-                            width: 800px;
+                          #map-canvas {
+                            height: 700px;
+                            width: 600px;
                             margin: 0px;
-                            padding: 0px
+                            padding: 50px }
+                          #map-canvas, #ui {
+                            display: inline-block;
+                          }
+                          #ui{
+                          position:fixed;
+                          top:100px;
+                          margin:100px;
+                          }
                         </style>
                         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=nl"></script>
                         <script>
                         
-                            var city
+                            var city;
                             
-                            var map
+                            var map;
                             
                             var cityArray = new Array();
                             
                             cityArray = [%s];
+                            
+                            var markersArray = new Array();
                             
                             function initialize() {
                                 var infowindow = new google.maps.InfoWindow();
@@ -72,9 +82,9 @@ class Server():
                                     zoom: 8,
                                     center: new google.maps.LatLng(52.132633,5.291266)
                                   }
-                                  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                                  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
                                                                     
-                                  var x = 0
+                                  var x = 0;
                                   var city;
                                   var lat;
                                   var lng;
@@ -83,22 +93,105 @@ class Server():
                                       city = cityArray[x][0];
                                       lat = cityArray[x][1];
                                       lng = cityArray[x][2];
-                                      var latlng = new google.maps.LatLng(lat,lng);
-                                      var marker = new google.maps.Marker({
-                                          map: map,
-                                          position: latlng,
-                                          title: city,
-                                          animation: google.maps.Animation.DROP
-                                      });
+                                      placeMarker(map,city,lat,lng);
                                   }
                             }
                     
                             google.maps.event.addDomListener(window, 'load', initialize);
+                            
+                            function placeMarkersInRange(){
+                                oForm = document.getElementById("range_form");
+                                main = oForm.elements["city"].value;
+                                range = oForm.elements["radius"].value;
+                                index = -1;
+                                
+                                for(x=0; x<cityArray.length; x++){
+                                    if(cityArray[x][0].toLowerCase() == main.toLowerCase()){
+                                        index = x;
+                                    }
+                                }
+                                
+                                if(index == -1){
+                                    alert("Stad niet gevonden. Check uw spelling of probeer een andere plaats");
+                                }
+                                else{
+                                    removeMarkers();
+                                    
+                                    mainLat = cityArray[index][1];
+                                    mainLon = cityArray[index][2];
+                                    
+                                    for(x=0; x<cityArray.length; x++){
+                                        targetName = cityArray[x][0];
+                                        targetLat = cityArray[x][1];
+                                        targetLon = cityArray[x][2];
+                                        distance = calculateDistance(mainLat,mainLon,targetLat,targetLon);
+                                        if(distance <= range){
+                                            placeMarker(map,targetName,targetLat,targetLon);
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            function placeMarker(map,name,lat,lng){
+                                var latlng = new google.maps.LatLng(lat,lng);
+                                var marker = new google.maps.Marker({
+                                    map: map,
+                                    position: latlng,
+                                    title: name,
+                                    animation: google.maps.Animation.DROP
+                                });
+                                markersArray.push(marker);                            
+                            }
+                            
+                            function removeMarkers(){
+                                for(m in markersArray){ 
+                                    markersArray[m].setMap(null);  
+                                }                              
+                            }
+                            
+                            function calculateDistance(lat1,lon1,lat2,lon2){
+                                var R = 6371; // km
+                                var dLat = (lat2-lat1).toRad();
+                                var dLon = (lon2-lon1).toRad();
+                                var lat1 = lat1.toRad();
+                                var lat2 = lat2.toRad();
+                                
+                                var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                                        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+                                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                                var d = R * c; //returns distance in km
+                                d =  Math.round(d);
+                                return d;
+                            }
+                            
+                            // Converts numeric degrees to radians
+                            if (typeof(Number.prototype.toRad) === "undefined") {
+                              Number.prototype.toRad = function() {
+                                return this * Math.PI / 180;
+                              }
+                            }
                     
                         </script>
                       </head>
                       <body>
                           <div id="map-canvas"></div>
+                          <div id="ui">
+                              <p>
+                                U kunt ook bij u in de buurt zoeken.
+                                
+                                Voer hier uw woonplaats in.
+                              </p>
+                              <form id="range_form">
+                                <input type="text" name="city"><br>
+                                <br>
+                                <input type="radio" name="radius" value="5">5 km<br>
+                                <input type="radio" name="radius" value="10">10 km<br>
+                                <input type="radio" name="radius" value="20">20 km<br>
+                                <input type="radio" name="radius" value="50">50 km<br>
+                                <br>
+                                <input onClick=placeMarkersInRange() type="button" value="Vind plaatsen met vacatures of cv's in de buurt">
+                              </form>
+                          </div>
                       </body>
                     </html>""" % (cityArrayString)
 
