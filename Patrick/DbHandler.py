@@ -33,11 +33,9 @@ class DbHandler:
     def getLocations(self):
         global cursor
         try:
-            cursor.execute(sql.cv_locations)
-            list1 = cursor.fetchall()
-            cursor.execute(sql.vac_locations)
-            list2 = cursor.fetchall()
-            return list1 + list2
+            cursor.execute(sql.city_locations)
+            list = cursor.fetchall()
+            return list
         except Exception,e:
             logging.info('Can\'t execute query')
             logging.debug(e)

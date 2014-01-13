@@ -19,22 +19,29 @@ class Server():
         
         cityArray = self.db.getLocations()
         
-        x = 0
-        for c in cityArray: #This is to lose excess space at either end of the strings.
-            text = ''
-            for s in str(c).split():
-                text = text + s + " "
-            cityArray[x] = "\""+text.lower()[2:-4]+"\""
-            x=x+1
-            
-        cityArray = sorted(set(cityArray)) #remove duplicates
-        
         cityArrayString = ''
         
-        for c in cityArray: #convert array into a string
-            cityArrayString = cityArrayString + c + ', '
+        #make the city names neatly capitalized
+        
+        for c in cityArray:
+            string = c[0]
+            chars = list(c[0])
+            if string.find(' ')>0:
+                loc = string.find(' ')
+                chars[loc+1] = chars[loc+1].upper()
+            elif string.find('-')>0:
+                loc = string.find('-')
+                chars[loc+1] = chars[loc+1].upper()
+            chars[0] = chars[0].upper()
+            c[0] = ''.join(chars)
+        
+        #convert array into a string in order to insert it in JS code
+        
+        for c in cityArray: 
+            cityArrayString = cityArrayString + str(c) + ', '
         
         cityArrayString = cityArrayString[:-2]
+        
         
         return """  <html>
                       <head>
@@ -61,66 +68,32 @@ class Server():
                             
                             function initialize() {
                                 var infowindow = new google.maps.InfoWindow();
-                                var geocoder = new google.maps.Geocoder();
                                   var mapOptions = {
                                     zoom: 8,
                                     center: new google.maps.LatLng(52.132633,5.291266)
                                   }
                                   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                                                                    
+                                  var x = 0
+                                  var city;
+                                  var lat;
+                                  var lng;
                                   
-                                  var timer = 0
-                                  
-                                  x=0
-                                  var location;
                                   for (x = 0; x < cityArray.length; x++) {
-                                        geocoder.geocode( {'address': cityArray[x],'region':'NL'}, function(x){return function(results, status) {
-                                            if (status == google.maps.GeocoderStatus.OK) {
-                                              var marker = new google.maps.Marker({
-                                                  map: map,
-                                                  position: results[0].geometry.location,
-                                                  title: cityArray[x],
-                                                  animation: google.maps.Animation.DROP
-                                              });
-                                            } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {    
-                                                setTimeout(function() {
-                                                }, 2000);
-                                            } else {
-                                              alert('Geocode was not successful for the following reason: ' + status);
-                                            }
-                                        }
-                                        }(x));
+                                      city = cityArray[x][0];
+                                      lat = cityArray[x][1];
+                                      lng = cityArray[x][2];
+                                      var latlng = new google.maps.LatLng(lat,lng);
+                                      var marker = new google.maps.Marker({
+                                          map: map,
+                                          position: latlng,
+                                          title: city,
+                                          animation: google.maps.Animation.DROP
+                                      });
                                   }
                             }
                     
                             google.maps.event.addDomListener(window, 'load', initialize);
-                            
-                            mark();
-                            
-                            function mark(){
-                                for (x = 0; x < cityArray.length; x++) {
-                                    geocodeAndMark(x);
-                                }
-                            }
-                            
-                            function geocodeAndMark(x){
-                                geocoder.geocode( {'address': cityArray[x],'region':'NL'}, function(results, status) {
-                                    if (status == google.maps.GeocoderStatus.OK) {
-                                      var marker = new google.maps.Marker({
-                                          map: map,
-                                          position: results[0].geometry.location,
-                                          title: cityArray[x],
-                                          animation: google.maps.Animation.DROP
-                                      });
-                                    } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {    
-                                        setTimeout(function() {
-                                            geocodeAndMark(x);
-                                        }, 2000);
-                                    } else {
-                                      alert('Geocode was not successful for the following reason: ' + status);
-                                    }
-                                }
-                                );
-                            }
                     
                         </script>
                       </head>
