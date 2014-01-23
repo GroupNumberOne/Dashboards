@@ -1,12 +1,11 @@
-package DBConnector;
+package dashboard_deborah.java.code;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
 public class tsvtest {
-	public static void main(String args[]) throws SQLException, IOException, ParseException {
-		
+	public void Execute() throws SQLException, IOException, ParseException {
 		DataWriter writer = new DataWriter();
 		writer.writeVacatureDonutGraphData();
 		writer.writeBrushBarGraphData();

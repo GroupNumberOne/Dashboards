@@ -1,4 +1,4 @@
-package DBConnector;
+package dashboard_deborah.java.code;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -38,7 +38,7 @@ public class DataWriter {
 	
 	public void writeVacatureDonutGraphData() throws SQLException {
     try {
-        File TSVFile = new File("C:/Users/Deborah/Desktop/VacatureDonutGraphData.tsv");
+        File TSVFile = new File("C:/nginx/html/dashboard/deborah/data/VacatureDonutGraphData.tsv");
         FileOutputStream is = new FileOutputStream(TSVFile);
         OutputStreamWriter osw = new OutputStreamWriter(is, "UTF-8");    
         Writer w = new BufferedWriter(osw);
@@ -53,11 +53,11 @@ public class DataWriter {
         al2 = doSelect(query);
         
         ArrayList<String> al3 = new ArrayList<String>();
-        query = "SELECT COUNT(dienstverband) as poep, dienstverband as count FROM vacatures GROUP BY dienstverband";
+        query = "SELECT COUNT(dienstverband) as d, dienstverband as count FROM vacatures GROUP BY dienstverband";
         al3 = doSelect(query);
         
         ArrayList<String> al4 = new ArrayList<String>();
-        query = "SELECT COUNT(functie) as poep, functie as count FROM vacatures GROUP BY functie";
+        query = "SELECT COUNT(functie) as d, functie as count FROM vacatures GROUP BY functie";
         al4 = doSelect(query);
 
         for (int x = 0; 500 > x + 1; x++) {
@@ -99,7 +99,7 @@ public class DataWriter {
     }
 }
 	public void writeBrushBarGraphData() throws IOException, SQLException, ParseException {      
-        File CSVFile = new File("C:/Users/Deborah/Desktop/BrushBarData.csv");
+        File CSVFile = new File("C:/nginx/html/dashboard/deborah/data/BrushBarData.csv");
         FileOutputStream is = new FileOutputStream(CSVFile);
         OutputStreamWriter osw = new OutputStreamWriter(is);    
         Writer w = new BufferedWriter(osw);
@@ -136,7 +136,7 @@ public class DataWriter {
 
 	public void writeCVDonutGraphData() throws SQLException {
 	    try {
-	        File TSVFile = new File("C:/Users/Deborah/Desktop/CVDonutGraphData.tsv");
+	        File TSVFile = new File("C:/nginx/html/dashboard/deborah/data/CVDonutGraphData.tsv");
 	        FileOutputStream is = new FileOutputStream(TSVFile);
 	        OutputStreamWriter osw = new OutputStreamWriter(is);    
 	        Writer w = new BufferedWriter(osw);
@@ -204,7 +204,7 @@ public class DataWriter {
 	
 	public void writeSequenceGraphData() throws SQLException {
 	    try {
-	        File CSVFile = new File("C:/Users/Deborah/Desktop/SequenceGraphData.csv");
+	        File CSVFile = new File("C:/nginx/html/dashboard/deborah/data/SequenceGraphData.csv");
 	        FileOutputStream is = new FileOutputStream(CSVFile);
 	        OutputStreamWriter osw = new OutputStreamWriter(is);    
 	        Writer w = new BufferedWriter(osw);
@@ -251,7 +251,7 @@ public class DataWriter {
 	
 	public void writeToolTipBarGraphData() throws SQLException {
 	    try {
-	        File TSVFile = new File("C:/Users/Deborah/Desktop/ToolTipBarGraphData.tsv");
+	        File TSVFile = new File("C:/nginx/html/dashboard/deborah/data/ToolTipBarGraphData.tsv");
 	        FileOutputStream is = new FileOutputStream(TSVFile);
 	        OutputStreamWriter osw = new OutputStreamWriter(is);    
 	        Writer w = new BufferedWriter(osw);
@@ -293,7 +293,7 @@ public class DataWriter {
 	
 	public void writeDualBarBarGraphData() throws SQLException {
 	    try {
-	        File TSVFile = new File("C:/Users/Deborah/Desktop/DualBarGraphData.tsv");
+	        File TSVFile = new File("C:/nginx/html/dashboard/deborah/data//DualBarGraphData.tsv");
 	        FileOutputStream is = new FileOutputStream(TSVFile);
 	        OutputStreamWriter osw = new OutputStreamWriter(is);    
 	        Writer w = new BufferedWriter(osw);
@@ -350,7 +350,7 @@ public class DataWriter {
 	}
 	
 	public void writeShowReelGraphData() throws IOException, SQLException, ParseException {      
-        File CSVFile = new File("C:/Users/Deborah/Desktop/ShowReelData.csv");
+        File CSVFile = new File("C:/nginx/html/dashboard/deborah/data/ShowReelData.csv");
         FileOutputStream is = new FileOutputStream(CSVFile);
         OutputStreamWriter osw = new OutputStreamWriter(is);    
         Writer w = new BufferedWriter(osw);

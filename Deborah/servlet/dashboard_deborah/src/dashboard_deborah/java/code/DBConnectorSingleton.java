@@ -1,4 +1,5 @@
-package DBConnector;
+package dashboard_deborah.java.code;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
