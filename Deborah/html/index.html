@@ -12,61 +12,65 @@
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.min.js"></script>
 
 <body>
-	<div id="left">
-		<h2>Aantal opgehaalde CV's vs vacatures in verloop van tijd</h2>
-		<script type="text/javascript" src="js/showreel.js"></script>
-	</div>
-
-	<div id="right">
-		<h2>Informatie over data van CV's en vacatures</h2>
-		<div id="donutgraphs">
-			<div id="form1">
-				<form>
-					<label><input id="cvinput" type="radio" name="dataset" value="xrij" checked> Rijbewijs</label> <br />
-					<label><input id="cvinput" type="radio" name="dataset" value="xberoep"> Soorten beroepen</label>
-				</form>
-			</div>
-			<div id="form2">
-				<form>
-					<label><input id="vacinput" type="radio" name="dataset" value="xdienstverband" checked> Soort dienstverband</label> <br />
-					<label><input id="vacinput" type="radio" name="dataset" value="xfunctie"> Soorten functies</label>
-				</form>
-			</div>
-			<script type="text/javascript" src="js/cvdonut.js"></script>
-			<script type="text/javascript" src="js/vacdonut.js"></script>
+	<div id="container">
+		<div id="left">
+			<h2>Aantal opgehaalde CV's vs vacatures in verloop van tijd</h2>
+			<script type="text/javascript" src="js/showreel.js"></script>
 		</div>
-	
-		<div id="bargraphs">
-			<h2>Opleidingsniveau en aantal data</h2>
-			<script type="text/javascript" src="js/dualbar.js"></script>
 
-			
-			<script type="text/javascript" src="js/tooltipbar.js"></script>
-		</div>
-	</div>
-	
-	<div id="under">
-		<div id="seq">
-			<h2>Bron data en soort data</h2>
-			<div id="main">
-				<div id="sequence"></div>
-				<div id="chart">
-					<div id="explanation" style="visibility: hidden;">
-						<span id="percentage"></span><br/>
-						van de data van de database bestaat hieruit
-					</div>
+		<div id="right">
+			<h2 style="margin-left: -50px;">Informatie over data van CV's en vacatures</h2>
+			<div id="donutgraphs">
+				<div id="form1">
+					<form>
+						<label><input id="cvinput" type="radio" name="dataset" value="xrij" checked> Rijbewijs</label> <br />
+						<label><input id="cvinput" type="radio" name="dataset" value="xberoep"> Soorten beroepen</label>
+					</form>
 				</div>
+				<div id="form2">
+					<form>
+						<label><input id="vacinput" type="radio" name="dataset" value="xdienstverband" checked> Soort dienstverband</label> <br />
+						<label><input id="vacinput" type="radio" name="dataset" value="xfunctie"> Soorten functies</label>
+					</form>
+				</div>
+				<script type="text/javascript" src="js/cvdonut.js"></script>
+				<script type="text/javascript" src="js/vacdonut.js"></script>
 			</div>
-			<div id="sidebar">
-				<input type="checkbox" id="togglelegend"> Legenda<br/>
-				<div id="legend" style="visibility: hidden;"></div>
+		
+			<div id="bargraphs">
+				<h2>Opleidingsniveau en aantal data</h2>
+				<script type="text/javascript" src="js/dualbar.js"></script>
+
+				
+				<script type="text/javascript" src="js/tooltipbar.js"></script>
 			</div>
-			<script type="text/javascript" src="js/sequences.js"></script>
 		</div>
 		
-		<div id="brushbar">	
-			<h2>Crawleractiviteit</h2>
-			<script type="text/javascript" src="js/brushbar.js"></script>
+		<div id="under">
+			<div id="seq">
+				<h2>Bron data en soort data</h2>
+				<div id="main">
+					<div id="sequence"></div>
+					<div id="chart">
+						<div id="explanation" style="visibility: hidden;">
+							<span id="percentage"></span><br/>
+							van de data van de database bestaat hieruit
+						</div>
+					</div>
+				</div>
+				<!--
+				<div id="sidebar">
+					<input type="checkbox" id="togglelegend"> Legenda<br/>
+					<div id="legend" style="visibility: hidden;"></div>
+				</div>
+				-->
+				<script type="text/javascript" src="js/sequences.js"></script>
+			</div>
+			
+			<div id="brushbar">	
+				<h2>Crawleractiviteit</h2>
+				<script type="text/javascript" src="js/brushbar.js"></script>
+			</div>
 		</div>
 	</div>
 </body>

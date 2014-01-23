@@ -97,6 +97,7 @@ path {
 #main {
   float: left;
   width: 350px;
+  margin-left: 40px;
 }
 
 #sidebar {
@@ -204,13 +205,13 @@ path {
 	
 #brushbar {
 	float: right;
-	margin-top: -268px;
+	margin-top: -68px;
 	margin-right: -40px;
 	}
 	
 #seq {
 	width:400px;
-	margin-left: 5px;
+	margin-left: 20px;
 	}
 	
 #form1 {
@@ -225,4 +226,12 @@ path {
 	height: 50px;
 	display: inline-block;
 	float: right;
+	}
+	
+h2 {
+	color:#777777;
+	font-family:arial;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
 	}
