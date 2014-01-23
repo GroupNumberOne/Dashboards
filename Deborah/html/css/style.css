@@ -1,7 +1,7 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: auto;
-  width: 960px;
+  width: 1000px;
   padding-top: 20px;
 }
 
@@ -162,15 +162,15 @@ path {
  }
  
 #left {
-	width: 500px;
-	height: 500px;
+	width: 530px;
+	height: 650px;
 	float: left;
 	display: inline-block;
 	}
 	
 #right {
-	width: 410px;
-	height: 500px;
+	width: 430px;
+	height: 650px;
 	display: inline-block;
 	float: right;
 	}
@@ -178,6 +178,7 @@ path {
 #bargraphs {
 	display: inline-block;
 	height: 250px;
+	margin-top: -30px;
 	}
 	
 #dualbar {
@@ -187,6 +188,7 @@ path {
 	
 #tooltip {
 	margin-top: -200px;
+	margin-right: -50px;
 	}
 	
 #donutgraphs {
@@ -202,9 +204,25 @@ path {
 	
 #brushbar {
 	float: right;
-	margin-top: -150px;
+	margin-top: -268px;
+	margin-right: -40px;
 	}
 	
 #seq {
 	width:400px;
+	margin-left: 5px;
+	}
+	
+#form1 {
+	width: 215px;
+	height: 50px;
+	display: inline-block;
+	float: left;
+	}
+	
+#form2 {
+	width: 215px;
+	height: 50px;
+	display: inline-block;
+	float: right;
 	}

@@ -1,6 +1,6 @@
 var brushmargin = {top: 10, right: 10, bottom: 100, left: 40},
     brushmargin2 = {top: 230, right: 10, bottom: 20, left: 40},
-    brushwidth =  550 - brushmargin.left - brushmargin.right,
+    brushwidth =  500 - brushmargin.left - brushmargin.right,
     brushheight = 300 - brushmargin.top - brushmargin.bottom,
     brushheight2 = 300 - brushmargin2.top - brushmargin2.bottom;
 
@@ -36,7 +36,7 @@ var brushsvg = d3.select("body").select("#under").select("#brushbar").append("sv
     .attr("height", brushheight + brushmargin.top + brushmargin.bottom);
 
 brushsvg.append("defs").append("clipPath")
-    .attr("id", "clip")
+    .attr("id", "brushclip")
   .append("rect")
     .attr("width", brushwidth)
     .attr("height", brushheight);
@@ -61,7 +61,7 @@ d3.csv("data/BrushBarData.csv", function(error, data) {
 
   brushfocus.append("path")
       .datum(data)
-      .attr("clip-path", "url(#clip)")
+      .attr("clip-path", "url(#brushclip)")
       .attr("d", brusharea)
       .attr("fill", "steelblue");
 

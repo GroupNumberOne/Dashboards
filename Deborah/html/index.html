@@ -13,32 +13,41 @@
 
 <body>
 	<div id="left">
+		<h2>Aantal opgehaalde CV's vs vacatures in verloop van tijd</h2>
 		<script type="text/javascript" src="js/showreel.js"></script>
 	</div>
 
 	<div id="right">
+		<h2>Informatie over data van CV's en vacatures</h2>
 		<div id="donutgraphs">
-			<form>
-				<label><input id="cvinput" type="radio" name="dataset" value="xrij" checked> Rijbewijs</label>
-				<label><input id="cvinput" type="radio" name="dataset" value="xberoep"> Aantal verschillende beroepen</label>
-			</form>
-			<form>
-				<label><input id="vacinput" type="radio" name="dataset" value="xdienstverband" checked> Dienstverband</label>
-				<label><input id="vacinput" type="radio" name="dataset" value="xfunctie"> Aantal verschillende functies</label>
-			</form>
+			<div id="form1">
+				<form>
+					<label><input id="cvinput" type="radio" name="dataset" value="xrij" checked> Rijbewijs</label> <br />
+					<label><input id="cvinput" type="radio" name="dataset" value="xberoep"> Soorten beroepen</label>
+				</form>
+			</div>
+			<div id="form2">
+				<form>
+					<label><input id="vacinput" type="radio" name="dataset" value="xdienstverband" checked> Soort dienstverband</label> <br />
+					<label><input id="vacinput" type="radio" name="dataset" value="xfunctie"> Soorten functies</label>
+				</form>
+			</div>
 			<script type="text/javascript" src="js/cvdonut.js"></script>
 			<script type="text/javascript" src="js/vacdonut.js"></script>
 		</div>
 	
 		<div id="bargraphs">
+			<h2>Opleidingsniveau en aantal data</h2>
 			<script type="text/javascript" src="js/dualbar.js"></script>
 
+			
 			<script type="text/javascript" src="js/tooltipbar.js"></script>
 		</div>
 	</div>
 	
 	<div id="under">
 		<div id="seq">
+			<h2>Bron data en soort data</h2>
 			<div id="main">
 				<div id="sequence"></div>
 				<div id="chart">
@@ -49,13 +58,14 @@
 				</div>
 			</div>
 			<div id="sidebar">
-				<input type="checkbox" id="togglelegend"> Legend<br/>
+				<input type="checkbox" id="togglelegend"> Legenda<br/>
 				<div id="legend" style="visibility: hidden;"></div>
 			</div>
 			<script type="text/javascript" src="js/sequences.js"></script>
 		</div>
-			
+		
 		<div id="brushbar">	
+			<h2>Crawleractiviteit</h2>
 			<script type="text/javascript" src="js/brushbar.js"></script>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 var m = [20, 20, 30, 20],
     w = 550 - m[1] - m[3],
-    h = 500 - m[0] - m[2];
+    h = 552 - m[0] - m[2];
 
 var x,
     y,
@@ -74,7 +74,7 @@ function lines() {
   ]);
 
   var g = svg.selectAll(".symbol")
-      .attr("transform", function(d, i) { return "translate(0," + (i * h / 4 + 10) + ")"; });
+      .attr("transform", function(d, i) { return "translate(0," + (i * h / 2 + 10) + ")"; });
 
   g.each(function(d) {
     var e = d3.select(this);
@@ -92,6 +92,7 @@ function lines() {
         .attr("x", 12)
         .attr("dy", ".31em")
         .text(d.key);
+
   });
 
   function draw(k) {
@@ -105,6 +106,7 @@ function lines() {
       e.selectAll("circle, text")
           .data(function(d) { return [d.values[k], d.values[k]]; })
           .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.price) + ")"; });
+		  
     });
   }
 
@@ -554,5 +556,6 @@ function donutExplode() {
     svg.selectAll("*").remove();
     svg.selectAll("g").data(symbols).enter().append("g").attr("class", "symbol");
     lines();
+	location.reload(); 
   }, duration);
 }

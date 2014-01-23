@@ -1,5 +1,5 @@
 var dualbarmargin = {top: 80, right: 60, bottom: 20, left: 60},
-    dualbarwidth = 250 - dualbarmargin.left - dualbarmargin.right,
+    dualbarwidth = 320 - dualbarmargin.left - dualbarmargin.right,
     dualbarheight = 300 - dualbarmargin.top - dualbarmargin.bottom;
 
 var dualbarx = d3.scale.ordinal()

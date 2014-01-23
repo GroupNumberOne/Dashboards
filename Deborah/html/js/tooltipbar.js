@@ -1,5 +1,5 @@
-var tooltipmargin = {top: 20, right: 20, bottom: 20, left: 30},
-    tooltipwidth = 150 - tooltipmargin.left - tooltipmargin.right,
+var tooltipmargin = {top: 20, right: 10, bottom: 20, left: 40},
+    tooltipwidth = 110 - tooltipmargin.left - tooltipmargin.right,
     tooltipheight = 250 - tooltipmargin.top - tooltipmargin.bottom;
 
 var tooltipformatPercent = d3.format(".0%");
