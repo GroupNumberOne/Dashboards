@@ -1,3 +1,12 @@
+setTimeout(function(){
+	window.location = 'http://infprj01-56.no-ip.org:8080/dashboard_deborah/update_dashboard';
+	},600000
+); 
+
+window.onload=function(){
+	setTimeout();
+};
+  
 var m = [20, 20, 30, 20],
     w = 550 - m[1] - m[3],
     h = 552 - m[0] - m[2];
@@ -556,6 +565,5 @@ function donutExplode() {
     svg.selectAll("*").remove();
     svg.selectAll("g").data(symbols).enter().append("g").attr("class", "symbol");
     lines();
-	location.reload(); 
   }, duration);
 }
