@@ -1,0 +1,94 @@
+#container {
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 15px;
+	font-family:"Verdana";
+	font-size: 12px;
+	background-color:white;
+	-moz-box-shadow: 0 0 10px #888;
+	-webkit-box-shadow: 0 0 10px#888;
+	box-shadow: 0 0 10px #888;
+	margin-top:20px;
+	}
+	
+html {
+	background-color:#EDEDED;
+	}
+	
+.description {
+	font-size: 10px;
+	}
+	
+.smallgraph {
+	width:300px;
+	height:320px;
+	float: left;
+	font-size: 10px;
+	margin-left: 100px;
+	margin-right:50px;
+	text-align:center;
+	}
+
+.clear {
+	height:30px;
+	clear:both;
+	}
+	
+.sequencesgraph {
+	width:750px;
+	height:750px;
+	float: left;
+	font-size: 10px;
+	margin-left: 100px;
+	margin-right:50px;
+	text-align:center;
+	}
+	
+.sortablebars {
+	width:900px;
+	height:550px;
+	font-size: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:center;
+	}
+	
+.donutgraph {
+	width:750px;
+	height:550px;
+	font-size: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:center;
+	}
+	
+.areachart {
+	width:900px;
+	height:550px;
+	font-size: 10px;
+	margin-left: 20px;
+	text-align:center;
+	}
+	
+.line{ 
+	margin-top:5px;
+    display:block;
+    border:none;
+    color:white;
+    height:1px;
+    background:#D8D8D8;
+}
+
+.refreshbutton {
+	float:right;
+	margin-top: -120px;
+	margin-right: 100px;
+	}
+	
+#header {
+	margin-left:50px;
+	width: 100%;
+	font-size: 30px;
+	padding-bottom: 50px;
+	}
