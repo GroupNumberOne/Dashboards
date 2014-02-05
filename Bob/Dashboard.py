@@ -66,7 +66,7 @@ class Server():
 path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 config = {'global':
                 {'tools.staticdir.root':path,
-                 'server.socket_port': 8008, 
+                 'server.socket_port': 8009, 
                  'server.socket_host':'0.0.0.0'
                 },
           '/static':
